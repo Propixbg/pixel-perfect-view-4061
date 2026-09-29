@@ -115,7 +115,9 @@ function Contact() {
             </form>
 
             <div className="space-y-4">
-              <img src={media.aerialVilla} alt="AirProPix aerial work" loading="lazy" className="img-cover aspect-4/3 border border-border" />
+              <div className="aspect-4/3 overflow-hidden border border-border">
+                <img src={media.aerialVilla} alt="AirProPix aerial work" loading="lazy" className="h-full w-full object-cover" />
+              </div>
               <div className="border border-border bg-surface p-7">
                 <p className="eyebrow mb-4">Direct</p>
                 <a href="tel:+359892061977" className="block font-display text-2xl font-semibold hover:text-primary">
