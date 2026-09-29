@@ -83,7 +83,7 @@ function Work() {
 
       <Section tone="base" className="pt-10">
         <Container>
-          <div className="grid auto-rows-[220px] grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
+          <div className="grid grid-flow-row-dense auto-rows-[220px] grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-4">
             {filtered.map((it) => (
               <figure
                 key={it.title}
