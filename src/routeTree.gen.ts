@@ -10,33 +10,103 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R3dRouteImport } from './routes/3d'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as MappingRouteImport } from './routes/mapping'
+import { Route as PhotoVideoRouteImport } from './routes/photo-video'
+import { Route as WorkRouteImport } from './routes/work'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R3dRoute = R3dRouteImport.update({
+  id: '/3d',
+  path: '/3d',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MappingRoute = MappingRouteImport.update({
+  id: '/mapping',
+  path: '/mapping',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PhotoVideoRoute = PhotoVideoRouteImport.update({
+  id: '/photo-video',
+  path: '/photo-video',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/3d': typeof R3dRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/mapping': typeof MappingRoute
+  '/photo-video': typeof PhotoVideoRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/3d': typeof R3dRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/mapping': typeof MappingRoute
+  '/photo-video': typeof PhotoVideoRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/3d': typeof R3dRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/mapping': typeof MappingRoute
+  '/photo-video': typeof PhotoVideoRoute
+  '/work': typeof WorkRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/3d' | '/about' | '/contact' | '/mapping' | '/photo-video' | '/work'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/3d' | '/about' | '/contact' | '/mapping' | '/photo-video' | '/work'
+  id:
+    | '__root__'
+    | '/'
+    | '/3d'
+    | '/about'
+    | '/contact'
+    | '/mapping'
+    | '/photo-video'
+    | '/work'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R3dRoute: typeof R3dRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  MappingRoute: typeof MappingRoute
+  PhotoVideoRoute: typeof PhotoVideoRoute
+  WorkRoute: typeof WorkRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +118,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/3d': {
+      id: '/3d'
+      path: '/3d'
+      fullPath: '/3d'
+      preLoaderRoute: typeof R3dRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mapping': {
+      id: '/mapping'
+      path: '/mapping'
+      fullPath: '/mapping'
+      preLoaderRoute: typeof MappingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/photo-video': {
+      id: '/photo-video'
+      path: '/photo-video'
+      fullPath: '/photo-video'
+      preLoaderRoute: typeof PhotoVideoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R3dRoute: R3dRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  MappingRoute: MappingRoute,
+  PhotoVideoRoute: PhotoVideoRoute,
+  WorkRoute: WorkRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
