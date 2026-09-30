@@ -1,55 +1,66 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { LangSwitch, useT } from "@/lib/i18n";
 import logo from "@/assets/airpropix-logo.png.asset.json";
 
 type NavItem = {
-  label: string;
+  label: [string, string];
   to: string;
-  children?: { label: string; to: string; hash: string }[];
+  children?: { label: [string, string]; to: string; hash: string }[];
 };
 
 const nav: NavItem[] = [
-  { label: "Home", to: "/" },
+  { label: ["Home", "Начало"], to: "/" },
   {
-    label: "Photo & Video",
+    label: ["Photo & Video", "Фото и видео"],
     to: "/photo-video",
     children: [
-      { label: "Photography", to: "/photo-video", hash: "gallery" },
-      { label: "Video", to: "/photo-video", hash: "gallery" },
-      { label: "Drone", to: "/photo-video", hash: "gallery" },
-      { label: "Real Estate", to: "/photo-video", hash: "why" },
-      { label: "Brand Content", to: "/photo-video", hash: "package" },
+      { label: ["Photography", "Фотография"], to: "/photo-video", hash: "gallery" },
+      { label: ["Video", "Видео"], to: "/photo-video", hash: "gallery" },
+      { label: ["Drone Photo & Video", "Дрон фото и видео"], to: "/photo-video", hash: "gallery" },
+      { label: ["Architecture & Interiors", "Архитектура и интериори"], to: "/photo-video", hash: "gallery" },
+      { label: ["Real Estate", "Недвижими имоти"], to: "/photo-video", hash: "gallery" },
+      { label: ["Events", "Събития"], to: "/photo-video", hash: "gallery" },
+      { label: ["Business & Branding", "Бизнес и брандинг"], to: "/photo-video", hash: "gallery" },
+      { label: ["Products", "Продукти"], to: "/photo-video", hash: "gallery" },
     ],
   },
   {
-    label: "Mapping",
+    label: ["Mapping", "Картографиране"],
     to: "/mapping",
     children: [
-      { label: "Drone Mapping", to: "/mapping", hash: "pipeline" },
-      { label: "Photogrammetry", to: "/mapping", hash: "pipeline" },
-      { label: "Orthophoto", to: "/mapping", hash: "problems" },
-      { label: "3D Mapping", to: "/mapping", hash: "cases" },
-      { label: "Site Documentation", to: "/mapping", hash: "problems" },
-      { label: "Progress Monitoring", to: "/mapping", hash: "cases" },
+      { label: ["Drone Mapping", "Дрон картографиране"], to: "/mapping", hash: "pipeline" },
+      { label: ["Photogrammetry", "Фотограметрия"], to: "/mapping", hash: "pipeline" },
+      { label: ["Orthophoto", "Ортофото"], to: "/mapping", hash: "pipeline" },
+      { label: ["Point Cloud", "Облак от точки"], to: "/mapping", hash: "pipeline" },
+      { label: ["3D Mapping", "3D картографиране"], to: "/mapping", hash: "pipeline" },
+      { label: ["Site Documentation", "Документиране на обекти"], to: "/mapping", hash: "problems" },
+      { label: ["Progress Monitoring", "Мониторинг на напредъка"], to: "/mapping", hash: "cases" },
     ],
   },
   {
-    label: "3D",
+    label: ["3D", "3D"],
     to: "/3d",
     children: [
-      { label: "3D for Business", to: "/3d", hash: "business" },
-      { label: "3D for Events & Personalization", to: "/3d", hash: "events" },
+      { label: ["3D for Business", "3D за бизнеса"], to: "/3d", hash: "business" },
+      { label: ["Prototyping", "Прототипиране"], to: "/3d", hash: "business" },
+      { label: ["Functional Parts", "Функционални детайли"], to: "/3d", hash: "business" },
+      { label: ["Custom Production", "Индивидуално производство"], to: "/3d", hash: "business" },
+      { label: ["Events & Personalization", "Събития и персонализация"], to: "/3d", hash: "events" },
+      { label: ["Corporate Gifts", "Корпоративни подаръци"], to: "/3d", hash: "events" },
     ],
   },
-  { label: "Our Work", to: "/work" },
-  { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: ["Our Work", "Нашата работа"], to: "/work" },
+  { label: ["About", "За нас"], to: "/about" },
+  { label: ["Contact", "Контакт"], to: "/contact" },
 ];
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const t = useT();
+  const L = (l: [string, string]) => t(l[0], l[1]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -74,12 +85,12 @@ export function SiteHeader() {
 
         <nav className="hidden items-center gap-1 lg:flex">
           {nav.map((item) => (
-            <div key={item.label} className="group relative">
+            <div key={item.to + item.label[0]} className="group relative">
               <Link
                 to={item.to}
-                className="flex items-center gap-1.5 px-4 py-2 font-display text-[13px] tracking-wide uppercase text-foreground/75 transition-colors hover:text-primary [&.active]:text-primary"
+                className="flex items-center gap-1.5 px-3 py-2 font-display text-[13px] tracking-wide uppercase text-foreground/75 transition-colors hover:text-primary [&.active]:text-primary"
               >
-                {item.label}
+                {L(item.label)}
                 {item.children ? (
                   <span className="text-[8px] text-primary/70 transition-transform group-hover:translate-y-0.5">
                     ▼
@@ -90,12 +101,12 @@ export function SiteHeader() {
                 <div className="invisible absolute left-0 top-full w-64 translate-y-2 border border-border bg-ink/97 p-2 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                   {item.children.map((child) => (
                     <Link
-                      key={child.label}
+                      key={child.label[0]}
                       to={child.to}
                       hash={child.hash}
                       className="block px-3 py-2.5 text-sm text-foreground/70 transition-colors hover:bg-surface hover:text-primary"
                     >
-                      {child.label}
+                      {L(child.label)}
                     </Link>
                   ))}
                 </div>
@@ -105,11 +116,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LangSwitch />
           <Link
             to="/contact"
             className="hidden rounded-sm bg-primary px-5 py-2.5 font-display text-[12px] font-medium tracking-wide text-primary-foreground uppercase transition-colors hover:bg-primary/85 md:inline-flex"
           >
-            Start a project
+            {t("Start a project", "Започнете проект")}
           </Link>
           <button
             type="button"
@@ -133,25 +145,25 @@ export function SiteHeader() {
       {open ? (
         <div className="max-h-[75vh] overflow-y-auto border-t border-border bg-ink/97 px-5 pb-8 backdrop-blur-md lg:hidden">
           {nav.map((item) => (
-            <div key={item.label} className="border-b border-border/60 py-3">
+            <div key={item.to + item.label[0]} className="border-b border-border/60 py-3">
               <Link
                 to={item.to}
                 onClick={() => setOpen(false)}
                 className="block font-display text-base uppercase tracking-wide"
               >
-                {item.label}
+                {L(item.label)}
               </Link>
               {item.children ? (
                 <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                   {item.children.map((child) => (
                     <Link
-                      key={child.label}
+                      key={child.label[0]}
                       to={child.to}
                       hash={child.hash}
                       onClick={() => setOpen(false)}
                       className="text-xs text-muted-foreground"
                     >
-                      {child.label}
+                      {L(child.label)}
                     </Link>
                   ))}
                 </div>
@@ -163,7 +175,7 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
             className="mt-6 block bg-primary px-5 py-3.5 text-center font-display text-sm uppercase tracking-wide text-primary-foreground"
           >
-            Start a project
+            {t("Start a project", "Започнете проект")}
           </Link>
         </div>
       ) : null}
