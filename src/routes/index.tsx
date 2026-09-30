@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { media } from "@/lib/media";
-import { Btn, Container, Figure, NeedCard, Section, SectionHead, ValueItem } from "@/components/site/ui";
+import { Btn, Container, Figure, NeedCard, Section, SectionHead } from "@/components/site/ui";
 import { FinalCta } from "@/components/site/FinalCta";
 import { useT } from "@/lib/i18n";
 
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const heroRotation = [media.interior1, media.aerialVilla, media.videoFrame];
+const heroRotation = [media.brandContent, media.aerialVilla, media.videoFrame];
 
 function Hero() {
   const t = useT();
