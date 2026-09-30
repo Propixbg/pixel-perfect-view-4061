@@ -45,7 +45,7 @@ declare global {
   }
 }
 
-const SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string | undefined;
+const SITE_KEY = import.meta.env["VITE_TURNSTILE_SITE_KEY"] as string | undefined;
 
 function useTurnstile(lang: string, onToken: (t: string) => void) {
   const ref = useRef<HTMLDivElement>(null);
@@ -66,7 +66,7 @@ function useTurnstile(lang: string, onToken: (t: string) => void) {
         "error-callback": () => onToken(""),
       });
     };
-    if (window.turnstile) render();
+    if (window["turnstile"]) render();
     else {
       let s = document.querySelector<HTMLScriptElement>("script[data-turnstile]");
       if (!s) {
@@ -302,14 +302,14 @@ function Contact() {
   );
 }
 
-function FieldError({ msg }: { msg?: string }) {
+function FieldError({ msg }: { msg?: string | undefined }) {
   return msg ? <p className="mt-2 text-xs text-destructive">{msg}</p> : null;
 }
 
 function Field({
   label, name, type = "text", required, value, onChange, error,
 }: {
-  label: string; name: string; type?: string; required?: boolean; value: string; onChange: (v: string) => void; error?: string;
+  label: string; name: string; type?: string; required?: boolean; value: string; onChange: (v: string) => void; error?: string | undefined;
 }) {
   return (
     <div>
