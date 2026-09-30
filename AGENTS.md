@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture rules
+- Bilingual BG/EN via `src/lib/i18n.tsx` (`useT()(en, bg)`), default BG, persisted in localStorage (`?lang=` override) — lightweight, no route duplication.
+- Contact form posts to `sendInquiry` server fn: Cloudflare Turnstile verified server-side, then Resend emails contact@airpropix.com — secrets stay server-side.

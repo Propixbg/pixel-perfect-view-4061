@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { LangProvider } from "@/lib/i18n";
 
 
 function NotFoundComponent() {
@@ -109,7 +110,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="bg">
       <head>
         <HeadContent />
       </head>
@@ -126,12 +127,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <LangProvider>
       <SiteHeader />
       <main className="min-h-screen">
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </main>
       <SiteFooter />
+      </LangProvider>
     </QueryClientProvider>
   );
 }
