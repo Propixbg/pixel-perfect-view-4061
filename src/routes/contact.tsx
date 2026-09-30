@@ -73,7 +73,7 @@ function useTurnstile(lang: string, onToken: (t: string) => void) {
         s = document.createElement("script");
         s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
         s.async = true;
-        s.dataset.turnstile = "1";
+        s.dataset["turnstile"] = "1";
         document.head.appendChild(s);
       }
       s.addEventListener("load", render);
