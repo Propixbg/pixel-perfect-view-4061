@@ -83,7 +83,7 @@ export function SiteHeader() {
           <img src={logo.url} alt="AirProPix" className="h-6 w-auto md:h-7" />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 xl:flex">
           {nav.map((item) => (
             <div key={item.to + item.label[0]} className="group relative">
               <Link
@@ -127,7 +127,7 @@ export function SiteHeader() {
             type="button"
             aria-label="Menu"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center border border-border lg:hidden"
+            className="flex h-10 w-10 items-center justify-center border border-border xl:hidden"
           >
             <div className="space-y-1.5">
               <span
@@ -143,7 +143,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="max-h-[75vh] overflow-y-auto border-t border-border bg-ink/97 px-5 pb-8 backdrop-blur-md lg:hidden">
+        <div className="max-h-[75vh] overflow-y-auto border-t border-border bg-ink/97 px-5 pb-8 backdrop-blur-md xl:hidden">
           {nav.map((item) => (
             <div key={item.to + item.label[0]} className="border-b border-border/60 py-3">
               <Link
