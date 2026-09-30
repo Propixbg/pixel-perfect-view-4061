@@ -226,7 +226,7 @@ function Home() {
             ))}
           </div>
           <div className="mt-20 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
-            {[["Capture", "Заснемане"], ["Map", "Картографиране"], ["Model", "Моделиране"], ["Make", "Създаване"]].map((s, idx) => (
+            {([["Capture", "Заснемане"], ["Map", "Картографиране"], ["Model", "Моделиране"], ["Make", "Създаване"]] as B[]).map((s, idx) => (
               <div key={s[0]} className="bg-background p-8">
                 <span className="font-mono text-xs text-primary">0{idx + 1}</span>
                 <p className="mt-3 font-display text-2xl font-semibold uppercase tracking-wide">{t(s[0], s[1])}</p>
