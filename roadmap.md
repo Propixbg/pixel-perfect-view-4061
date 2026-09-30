@@ -6,7 +6,7 @@
 - [x] Contact form: real email (Resend) + Cloudflare Turnstile, all states, bilingual
 - [ ] Contact keys: RESEND_API_KEY, TURNSTILE_SECRET_KEY, VITE_TURNSTILE_SITE_KEY (waiting on user)
 - [x] Home hero + three services copy
-- [ ] Home remaining sections translated + new copy (why, combined, process)
+- [x] Home remaining sections translated + new copy (why, combined, process)
 - [ ] Photo & Video page: six categories, distinct images, value section, BG
 - [ ] Mapping page: six outputs, workflow Plan/Capture/Process/Analyze/Deliver, applications, BG
 - [ ] 3D page: Business + Events sections, distinct images, quantities, BG
